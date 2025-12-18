@@ -1,0 +1,73 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 150px);
+    overflow: hidden;
+}
+
+.card-list-container {
+    flex: 1;
+    overflow-y: auto; /* 카드 영역만 스크롤 */
+    padding: 16px;
+    background-color: #fafafa;
+}
+
+/* 책 카드 */
+.book-card {
+    display: flex;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    margin: 10px 0;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.book-card:hover {
+    transform: scale(1.05);
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+}
+
+.book-cover {
+    width: 120px;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+.book-cover img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.book-info {
+    padding: 15px;
+    flex-grow: 1;
+}
+
+.book-info h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 0 0 10px 0;
+}
+
+.book-info p {
+    font-size: 14px;
+    color: #333;
+    margin: 4px 0;
+}
+
+.book-info .author {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.book-info .publisher,
+.book-info .isbn,
+.book-info .genre {
+    font-weight: normal;
+    color: #555;
+}

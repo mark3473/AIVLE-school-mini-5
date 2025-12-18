@@ -1,0 +1,70 @@
+.book-card {
+    display: flex;
+    background-color: whitesmoke;
+    overflow: hidden;
+    border-radius: 10px;
+    width: 100%;
+    min-width: 350px;
+    max-width: 400px;
+}
+
+.book-card:hover {
+    transform: scale(1.05);
+    box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.book-cover {
+    display: flex;
+    width: 100%;
+    height: 200%;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.book-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.book-info {
+    padding: 15px;
+}
+
+.book-info h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #646cff;
+    line-height: 1;
+}
+
+/* 공통 스타일: 모든 텍스트 항목에 대해 동일하게 적용 */
+.book-info p {
+    font-size: 14px;       /* 기본 텍스트 크기 통일 */
+    color: #333;           /* 진한 회색으로 통일 */
+    margin: 5px 0;         /* 항목 간 적당한 간격 */
+    line-height: 1.4;      /* 가독성 높이기 */
+}
+
+/* 저자 */
+.book-info .author {
+    font-weight: bold;     /* 저자만 굵게 */
+    color: #333;           /* 다른 텍스트와 색상 통일 */
+}
+
+/* 출판사, 장르 */
+.book-info .publisher,
+.book-info .genre {
+    font-weight: normal;   /* 기본 폰트 */
+    color: #333;           /* 진한 회색으로 통일 */
+}
+
+/* 줄거리(description) */
+.book-info .summary {
+    font-weight: normal;
+    color: #333;           /* 모든 텍스트와 동일하게 */
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+}

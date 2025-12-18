@@ -1,0 +1,22 @@
+header {
+    position: sticky; /* 스크롤해도 항상 상단 고정 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px; /* 고정 높이 */
+    background-color: #2c3e50;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.14), 0 1px 5px rgba(0,0,0,0.12);
+    z-index: 1000; /* 다른 요소 위로 */
+}
+
+header h1 {
+    font-size: 24px; /* 기존 30px보다 조금 작게 */
+    margin: 0;
+}
+
+
+
