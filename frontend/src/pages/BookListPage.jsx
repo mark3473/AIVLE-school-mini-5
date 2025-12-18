@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import BookCard from '../components/BookCard';
 import BookDetailModal from '../components/BookDetailModal';
 import { Modal, Box, Typography, TextField, Grid, Container } from '@mui/material';
-import axios from 'axios';
-import './BookListPage.css';
+// import api from 'axios';
+import api from '../api/axios';
 
 function BookListPage({books, setBooks}) {
     const [searchTerm] = useState('');
@@ -11,7 +11,7 @@ function BookListPage({books, setBooks}) {
     const [selectedBook, setSelectedBook] = useState(null);
 
     useEffect(() => {
-        axios.get('/api/books')
+        api.get('/api/books')
             .then(response => setBooks(response.data))
             .catch(err => console.error("도서 불러오기 실패:", err));
     }, []);
@@ -34,7 +34,7 @@ function BookListPage({books, setBooks}) {
     const handleDelete = (bookId) => {
         if (!window.confirm("정말 삭제하시겠습니까?")) return;
 
-        axios.delete(`/api/books/${bookId}`)
+        api.delete(`/api/books/${bookId}`)
             .then(() => {
                 setBooks(prev => prev.filter(b => b.id !== bookId));
                 closeModal();

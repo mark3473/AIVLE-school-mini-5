@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api/axios';
 import {
     TextField, Button, Box, Typography, Select, MenuItem,
     FormControl, List, ListItem, ListItemText,
@@ -109,7 +109,7 @@ function EditBookPage({ books, setBooks }) {
         if (!bookToEdit) return;
 
         try {
-            await axios.put(`/api/books/${bookToEdit.id}`, formData);
+            await api.put(`/api/books/${bookToEdit.id}`, formData);
 
             // 클라이언트 state 갱신
             setBooks(prevBooks =>

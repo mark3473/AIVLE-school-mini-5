@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TextField, Button, Box, Typography, Select, MenuItem, InputLabel, FormControl, Modal } from '@mui/material';
+import api from '../api/axios';
 
 function NewBookPage({ addNewBook }) {
     const [formData, setFormData] = useState({
@@ -101,21 +102,14 @@ function NewBookPage({ addNewBook }) {
 
         try {
             console.log(formData);
-            const response = await fetch("http://localhost:8080/api/books", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formData)
-            });
 
-            if (!response.ok) {
-                throw new Error("도서 등록 실패");
-            }
+            const response = await api.post('/api/books', formData);
 
-            const data = await response.json();
             alert("도서가 성공적으로 등록되었습니다!");
-            addNewBook(formData);  // formData를 부모 컴포넌트에 전달
+
+            // 서버에서 내려준 실제 저장된 데이터 사용 권장
+            addNewBook(response.data);
+
             navigate("/books");
         } catch (error) {
             console.error("도서 등록 오류:", error);

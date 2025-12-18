@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { TextField, Button, Box, Typography, Paper } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import api from '../api/axios';
+
 
 function ChangePasswordPage() {
     const navigate = useNavigate();
@@ -22,25 +24,36 @@ function ChangePasswordPage() {
         setLoading(true);
 
         try {
-            const response = await fetch(`http://localhost:8080/api/users/${formData.loginId}`, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData)
-            });
-
-            if (!response.ok) {
-                const text = await response.text();
-                throw new Error(text || "비밀번호 변경 실패");
-            }
+            await api.put(`/api/users/${formData.loginId}`, formData);
 
             alert("비밀번호가 성공적으로 변경되었습니다!");
-            navigate("/login");   // 로그인 페이지로 이동
-
+            navigate("/login");  // 이건 그대로 OK
         } catch (error) {
-            alert(error.message);
-        } finally {
-            setLoading(false);
+            const message =
+                error.response?.data || "비밀번호 변경 실패";
+            alert(message);
         }
+
+        // try {
+        //     const response = await fetch(`http://localhost:8080/api/users/${formData.loginId}`, {
+        //         method: "PUT",
+        //         headers: { "Content-Type": "application/json" },
+        //         body: JSON.stringify(formData)
+        //     });
+        //
+        //     if (!response.ok) {
+        //         const text = await response.text();
+        //         throw new Error(text || "비밀번호 변경 실패");
+        //     }
+        //
+        //     alert("비밀번호가 성공적으로 변경되었습니다!");
+        //     navigate("/login");   // 로그인 페이지로 이동
+        //
+        // } catch (error) {
+        //     alert(error.message);
+        // } finally {
+        //     setLoading(false);
+        // }
     };
 
     return (

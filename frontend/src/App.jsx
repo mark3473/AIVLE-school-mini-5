@@ -9,13 +9,13 @@ import BookListPage from './pages/BookListPage';
 import SearchPage from './pages/SearchPage';
 import Layout from './components/Layout';
 import ChangePasswordPage from "./pages/ChangePasswordPage.jsx";
-import axios from 'axios';
+import api from './api/axios';
 
 function App() {
     const [books, setBooks] = useState([]);
 
     const fetchBooks = () => {
-        axios.get('/api/books').then(res => setBooks(res.data));
+        api.get('/api/books').then(res => setBooks(res.data));
     };
 
     const addNewBook = (newBook) => {

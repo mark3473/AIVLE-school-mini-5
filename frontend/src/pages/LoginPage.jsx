@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TextField, Button, Box, Typography } from '@mui/material';
+import api from '../api/axios';
 
 function LoginPage() {
     const [loginData, setLoginData] = useState({
@@ -21,28 +22,17 @@ function LoginPage() {
         e.preventDefault();
 
         try {
-            const response = await fetch("http://localhost:8080/api/auth/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(loginData)
-            });
+            const response = await api.post('/api/auth/login', loginData);
 
-            if (!response.ok) {
-                throw new Error("로그인 실패");
-            }
-
-            const result = await response.json();
-            console.log("로그인 성공:", result);
+            console.log("로그인 성공:", response.data);
 
             navigate('/new-book'); // 로그인 성공 후 이동
-
         } catch (error) {
             console.error("에러 발생:", error);
             alert("아이디 또는 비밀번호가 틀렸습니다.");
         }
     };
+
 
 
     return (
