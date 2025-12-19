@@ -28,17 +28,14 @@ phases:
 
   post_build:
     commands:
-      - echo "=== build output check ==="
-      - pwd
+      - echo "=== build output ==="
       - ls -al
-      - ls -al deploy-scripts || true
-      - ls -al backend/build/libs || true
-      - ls -al frontend/dist || true
+      - ls -al backend/build/libs
+      - ls -al frontend/dist
 
 artifacts:
   files:
     - appspec.yml
     - deploy-scripts/**/*
-    - backend/build/libs/*.jar
+    - backend/build/libs/**/*
     - frontend/dist/**/*
-  discard-paths: no
