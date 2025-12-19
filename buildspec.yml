@@ -28,22 +28,19 @@ phases:
 
   post_build:
     commands:
-      - echo "=== pwd ==="
+      - echo "=== root ==="
       - pwd
-      - echo "=== ls root ==="
       - ls -al
-  
-      - echo "=== backend libs ==="
+
+      - echo "=== backend ==="
       - ls -al backend/build/libs || true
-  
-      - echo "=== frontend dist ==="
+
+      - echo "=== frontend ==="
       - ls -al frontend/dist || true
-  
-      - echo "=== creating deploy.zip ==="
+
       - zip -r deploy.zip appspec.yml deploy-scripts backend/build/libs frontend/dist
-  
-      - echo "=== zip structure ==="
       - unzip -l deploy.zip
+
 
 artifacts:
   files:
