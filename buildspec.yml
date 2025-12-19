@@ -35,6 +35,8 @@ phases:
 
 artifacts:
   files:
+    - appspec.yml
+    - 'deploy-scripts/**/*'
     - backend/build/libs/*.jar
-    - frontend/dist/**/*
+    - 'frontend/dist/**/*'
   discard-paths: no
