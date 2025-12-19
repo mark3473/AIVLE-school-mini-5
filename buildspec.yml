@@ -28,14 +28,21 @@ phases:
 
   post_build:
     commands:
-      - echo "Preparing CodeDeploy bundle"
-      - ls
-      - zip -r deploy.zip \
-          appspec.yml \
-          deploy-scripts \
-          backend/build/libs \
-          frontend/dist
-      - echo "==== deploy.zip structure ===="
+      - echo "=== pwd ==="
+      - pwd
+      - echo "=== ls root ==="
+      - ls -al
+  
+      - echo "=== backend libs ==="
+      - ls -al backend/build/libs || true
+  
+      - echo "=== frontend dist ==="
+      - ls -al frontend/dist || true
+  
+      - echo "=== creating deploy.zip ==="
+      - zip -r deploy.zip appspec.yml deploy-scripts backend/build/libs frontend/dist
+  
+      - echo "=== zip structure ==="
       - unzip -l deploy.zip
 
 artifacts:
