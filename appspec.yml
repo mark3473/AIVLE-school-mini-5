@@ -1,8 +1,11 @@
 version: 0.0
 os: linux
 files:
-  - source: dist/my-angular-project
+  - source: frontend/dist/my-angular-project
     destination: /var/www/my-angular-project
+
+  - source: backend/build/libs
+    destination: /opt/app
 permissions:
   - object: /var/www/my-angular-project
     pattern: '**'
