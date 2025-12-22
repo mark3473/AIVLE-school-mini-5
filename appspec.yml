@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 
 files:
-  - source: frontend/dist/my-angular-project
+  - source: frontend/dist
     destination: /var/www/my-angular-project
 
   - source: backend/build/libs
