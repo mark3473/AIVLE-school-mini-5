@@ -23,3 +23,7 @@ hooks:
     - location: deploy-scripts/application-start-hook.sh
       timeout: 300
       runas: root
+  ApplicationStop:
+    - location: deploy-scripts/application-end-hook.sh
+      timeout: 300
+      runas: root
