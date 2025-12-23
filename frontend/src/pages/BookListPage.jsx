@@ -10,16 +10,33 @@ function BookListPage({books, setBooks}) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedBook, setSelectedBook] = useState(null);
 
+    // useEffect(() => {
+    //     api.get('/api/books')
+    //         .then(response => setBooks(response.data))
+    //         .catch(err => console.error("도서 불러오기 실패:", err));
+    // }, []);
+
     useEffect(() => {
         api.get('/api/books')
-            .then(response => setBooks(response.data))
+            .then(response => {
+                console.log('books response:', response.data);
+                setBooks(response.data);
+            })
             .catch(err => console.error("도서 불러오기 실패:", err));
     }, []);
 
-    const filteredBooks = books.filter(book =>
-        book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        book.author.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    // const filteredBooks = books.filter(book =>
+    //     book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    //     book.author.toLowerCase().includes(searchTerm.toLowerCase())
+    // );
+
+    const filteredBooks = Array.isArray(books)
+        ? books.filter(book =>
+            book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            book.author.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+        : [];
+
 
     const openModal = (book) => {
         setSelectedBook(book);
