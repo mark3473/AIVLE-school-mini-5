@@ -8,14 +8,19 @@ echo "===== CodeDeploy ApplicationStart ====="
 ####################################
 echo "Stopping existing Spring Boot app..."
 
-# 실행 중인 기존 jar 종료 (없어도 에러 안 나게)
+# 실행 중인 기존 Spring Boot 종료
 pkill -f 'java.*\.jar' || true
 sleep 2
 
 echo "Starting new Spring Boot app..."
 
-# 가장 최신 jar 찾기
-JAR_FILE=$(ls -t /opt/app/*.jar | head -n 1)
+# 🚨 plain.jar 제외하고 실행용 jar만 선택
+JAR_FILE=$(ls -t /opt/app/*.jar | grep -v plain | head -n 1)
+
+if [ -z "$JAR_FILE" ]; then
+  echo "❌ Executable JAR not found"
+  exit 1
+fi
 
 echo "Using JAR: $JAR_FILE"
 
